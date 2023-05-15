@@ -54,6 +54,9 @@ Distributed as-is; no warranty is given.
 
 class CCS811Core
 {
+private:
+	TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
+	uint8_t I2CAddress;
 public:
 	// Return values
 	typedef enum
@@ -73,6 +76,7 @@ public:
 	void setI2CAddress(uint8_t address){
 		I2CAddress = address;
 	}
+	
 	CCS811_Status_e beginCore(TwoWire *wirePort);
 
 	//***Reading functions***//
@@ -91,10 +95,10 @@ public:
 	//  a number of consecutive writes
 	CCS811_Status_e multiWriteRegister(uint8_t offset, uint8_t *inputPointer, uint8_t length);
 
-protected:
+//protected:
 	//Variables
-	TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
-	uint8_t I2CAddress;
+//	TwoWire *_i2cPort; //The generic connection to user's chosen I2C hardware
+//	uint8_t I2CAddress;
 };
 
 //This is the highest level class of the driver.
