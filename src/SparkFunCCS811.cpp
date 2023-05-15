@@ -44,11 +44,11 @@ CCS811Core::CCS811Core(uint8_t inputArg) : I2CAddress(inputArg)
 {
 }
 
-CCS811Core::CCS811_Status_e CCS811Core::beginCore(TwoWire &wirePort)
+CCS811Core::CCS811_Status_e CCS811Core::beginCore(TwoWire *wirePort)
 {
 	CCS811Core::CCS811_Status_e returnError = CCS811_Stat_SUCCESS;
 
-	_i2cPort = &wirePort; //Pull in user's choice of I2C hardware
+	_i2cPort = wirePort; //Pull in user's choice of I2C hardware
 
 	//Wire.begin(); //See issue 13 https://github.com/sparkfun/SparkFun_CCS811_Arduino_Library/issues/13
 
@@ -241,7 +241,7 @@ CCS811::CCS811() : CCS811(0){}
 //  This starts the lower level begin, then applies settings
 //
 //****************************************************************************//
-bool CCS811::begin(TwoWire &wirePort)
+bool CCS811::begin(TwoWire *wirePort)
 {
 	if (beginWithStatus(wirePort) == CCS811_Stat_SUCCESS)
 		return true;
@@ -255,7 +255,7 @@ bool CCS811::begin(TwoWire &wirePort)
 //  This starts the lower level begin, then applies settings
 //
 //****************************************************************************//
-CCS811Core::CCS811_Status_e CCS811::beginWithStatus(TwoWire &wirePort)
+CCS811Core::CCS811_Status_e CCS811::beginWithStatus(TwoWire *wirePort)
 {
 	uint8_t data[4] = {0x11, 0xE5, 0x72, 0x8A};					   //Reset key
 	CCS811Core::CCS811_Status_e returnError = CCS811_Stat_SUCCESS; //Default error state
