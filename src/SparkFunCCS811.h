@@ -27,8 +27,14 @@ Distributed as-is; no warranty is given.
 #ifndef __CCS811_H__
 #define __CCS811_H__
 
+#ifndef TwoWire_h
+#define TwoWire_h
+
 #include "stdint.h"
 #include <Wire.h>
+
+
+
 
 //Register addresses
 #define CSS811_STATUS 0x00
