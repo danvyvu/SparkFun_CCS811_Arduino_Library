@@ -30,7 +30,7 @@ Distributed as-is; no warranty is given.
 #include "stdint.h"
 
 #include <Arduino.h>
-#include "Wire.h"
+#include <Wire.h>
 #include <math.h>
 
 //****************************************************************************//
